@@ -37,7 +37,7 @@ Offline multi-agent AI system that eliminates hallucination through cross-LLM va
 
 ## Contact
 For licensing, consulting, or partnership:
-- **Email**: [твой email]
+- **Email**: vladislav.agapov@gmail.com
 - **Telegram**: @agapov_vl
 - **LinkedIn**: linkedin.com/in/vladislav-agapov-937921385
 
