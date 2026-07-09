@@ -105,7 +105,7 @@ use_case: Complex multi-step reasoning, academic research
 - ✅ **Verifiable**: Every step logged and auditable
 - ✅ **Flexible**: Pluggable agents, multiple model configurations
 - ✅ **Optimizable**: Trade-off between speed and quality based on use case
-- ✅ **Sovereign AI**: No dependency on Western cloud infrastructure
+- ✅ **Sovereign AI**: No dependency on cloud infrastructure
 
 ## Demo Video
 
@@ -144,8 +144,7 @@ use_case: Complex multi-step reasoning, academic research
 3. **Edge AI**: Autonomous systems (drones, robots), no internet required (Config 3)
 4. **Real-time Systems**: Low-latency applications, embedded devices (Config 3)
 5. **Research**: Complex multi-step reasoning, academic projects (Config 4)
-6. **Defense/Dual-Use**: Verifiable AI for military/civilian applications (any config)
-7. **Sovereign AI**: Systems requiring full data control, no foreign dependencies (any config)
+6. **Sovereign AI**: Systems requiring full data control
 
 ## Technical Details
 
