@@ -219,12 +219,12 @@ execution:
 ### 1. Project-based (Recommended)
 - Fixed scope, fixed price, fixed timeline
 - Deliverable: working system + documentation + support
-- Starting from 500,000 RUB
+- Starting from 5000 USD
 - Payment: 50% upfront, 50% on delivery
 
 ### 2. Consulting
 - Architecture review, technical guidance
-- Rate: 5,000 RUB/hour
+- Rate: 100 USD/hour
 - Minimum engagement: 20 hours
 
 ### 3. Licensing
