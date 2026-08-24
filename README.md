@@ -1,116 +1,115 @@
 ```markdown
-# VMAR + RAG + RL: Мультиагентная система с обучением с подкреплением для генерации кода
+# VMAR + RAG + RL: Multi-Agent System with Reinforcement Learning for Code Generation
 
-## 🚀 Обзор проекта
+## 🚀 Project Overview
 
-Данный проект демонстрирует **мультиагентную AI-систему**, которая сочетает:
+This project demonstrates a **multi-agent AI system** that combines:
 
-- **RAG (Retrieval-Augmented Generation)** – контекстный поиск на основе базы знаний
-- **VMAR (Verifiable Multi-Agent Framework)** – верифицируемая, модульная и аудируемая оркестрация агентов
-- **Reinforcement Learning (RL)** – самокоррекция и улучшение через накопление опыта
+- **RAG (Retrieval-Augmented Generation)** – context retrieval based on a knowledge base
+- **VMAR (Verifiable Multi-Agent Framework)** – verifiable, modular, and auditable agent orchestration
+- **Reinforcement Learning (RL)** – self-correction and improvement through experience accumulation
 
-Система генерирует Python-код на основе задач на естественном языке, оценивает качество сгенерированного кода и **учится на своих ошибках** с использованием обучения с подкреплением.
+The system generates Python code based on natural language tasks, evaluates code quality, and **learns from its mistakes** using reinforcement learning.
 
 ---
 
-## 🧠 Архитектура системы
+## 🧠 System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                       VMAR + RAG + RL                          │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  Задача → Планировщик → Кодер → Исполнитель → Награда → RL-буфер│
-│      ↑         ↑           ↑          ↑           ↑            │
-│      └─────────┴───────────┴──────────┴───────────┘            │
-│                    RAG-база знаний                              │
+│  Task → Planner → Coder → Executor → Reward → RL Buffer       │
+│    ↑        ↑         ↑          ↑         ↑                  │
+│    └────────┴─────────┴──────────┴─────────┘                  │
+│                    RAG Knowledge Base                          │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Компоненты
+### Components
 
-| Компонент | Описание |
-|-----------|----------|
-| **Планировщик** | Агент на базе Qwen, создающий пошаговый план для задачи |
-| **Кодер** | Агент на базе Qwen, генерирующий Python-код на основе плана |
-| **Исполнитель** | Безопасное выполнение сгенерированного кода в изолированной среде |
-| **Функция награды** | Оценивает качество кода (структура, документация, корректность) |
-| **RL-буфер** | Хранит опыт (задача, код, награда) для обучения |
-| **RAG-база знаний** | Предоставляет контекстные правила (безопасность, стиль, производительность) |
+| Component | Description |
+|-----------|-------------|
+| **Planner** | Qwen-based agent that creates a step-by-step plan for the task |
+| **Coder** | Qwen-based agent that generates Python code based on the plan |
+| **Executor** | Safely executes generated code in an isolated environment |
+| **Reward Function** | Evaluates code quality (structure, documentation, correctness) |
+| **RL Buffer** | Stores experience (task, code, reward) for learning |
+| **RAG Knowledge Base** | Provides contextual rules (security, style, performance) |
 
 ---
 
-## 🔬 Технический стек
+## 🔬 Technology Stack
 
-| Уровень | Технологии |
-|---------|------------|
+| Layer | Technologies |
+|-------|--------------|
 | **LLM** | Qwen 2.5 1.5B (Hugging Face) |
-| **Фреймворк** | PyTorch, Transformers |
-| **Эмбеддинги** | sentence-transformers (all-MiniLM-L6-v2) |
-| **Векторная БД** | ChromaDB |
-| **RL-подход** | Off-policy обучение с буфером опыта |
-| **Инфраструктура** | Google Colab, Python 3.12 |
+| **Framework** | PyTorch, Transformers |
+| **Embeddings** | sentence-transformers (all-MiniLM-L6-v2) |
+| **Vector DB** | ChromaDB |
+| **RL Approach** | Off-policy learning with experience buffer |
+| **Infrastructure** | Google Colab, Python 3.12 |
 
 ---
 
-## 📊 Ключевые результаты: количественные улучшения
+## 📊 Key Results: Quantitative Improvements
 
-### Успешность выполнения
+### Success Rate
 
-| Фаза | Успешность | Улучшение |
-|------|------------|-----------|
-| **До RL** | 0% (первая попытка) | — |
-| **После RL** | 100% (последующие попытки) | **+100%** |
+| Phase | Success Rate | Improvement |
+|-------|--------------|-------------|
+| **Before RL** | 0% (first attempt) | — |
+| **After RL** | 100% (subsequent attempts) | **+100%** |
 
-### Качество кода (шкала 0–4)
+### Code Quality (0–4 scale)
 
-| Метрика | До RL | После RL | Улучшение |
-|---------|-------|----------|-----------|
-| **Документация** | 0% | 100% | **+100%** |
-| **Обработка ошибок** | 0% | 50% | **+50%** |
-| **Полнота задачи** | 0% | 100% | **+100%** |
-| **Общее качество** | 0/4 | 3.5/4 | **+87.5%** |
+| Metric | Before RL | After RL | Improvement |
+|--------|-----------|----------|-------------|
+| **Documentation** | 0% | 100% | **+100%** |
+| **Error Handling** | 0% | 50% | **+50%** |
+| **Task Completeness** | 0% | 100% | **+100%** |
+| **Overall Quality** | 0/4 | 3.5/4 | **+87.5%** |
 
-### Сравнение выполнения задач
+### Task Performance Comparison
 
-| Задача | Без RL | С RL |
-|--------|--------|------|
-| **Факториал** | ❌ Ошибка (код вычитания) | ✅ Правильно |
-| **Реверс строки** | — | ✅ Правильно |
-| **Проверка простоты** | — | ✅ Правильно (оптимизировано) |
-| **Числа Фибоначчи** | — | ✅ Правильно |
-
----
-
-## 🔄 Самокоррекция RL в действии
-
-### Пример: обучение на ошибке
-
-**Первая попытка (без RL):**
-- Задача: «Создать функцию для вычисления факториала»
-- Сгенерировано: ❌ Код вычитания (`perform_subtraction()`)
-- Награда: 0.0
-
-**Вторая попытка (с RL):**
-- Задача: «Вычислить: 4 + 9 = ?»
-- Сгенерировано: ✅ Правильная функция факториала
-- Награда: 1.0
-
-*Это демонстрирует, как система учится на своих ошибках и улучшается со временем.*
+| Task | Without RL | With RL |
+|------|------------|---------|
+| **Factorial** | ❌ Error (subtraction code) | ✅ Correct |
+| **Reverse String** | — | ✅ Correct |
+| **Prime Check** | — | ✅ Correct (optimized) |
+| **Fibonacci** | — | ✅ Correct |
 
 ---
 
-## 🏗️ Структура проекта
+## 🔄 RL Self-Correction in Action
+
+### Example: Learning from Error
+
+**First attempt (without RL):**
+- Task: "Create a function to calculate factorial"
+- Generated: ❌ Subtraction code (`perform_subtraction()`)
+- Reward: 0.0
+
+**Second attempt (with RL):**
+- Task: "Calculate: 4 + 9 = ?"
+- Generated: ✅ Correct factorial function
+- Reward: 1.0
+
+*This demonstrates how the system learns from its mistakes and improves over time.*
+
+---
+
+## 📁 Project Structure
 
 ```
 VMAR_multi_agent_demos/
-├── README.md                                    # Этот файл
-├── magent_v4_Rag_Qwen_Qwen_RL_v1_pynb.ipynb    # Основной блокнот
-└── requirements.txt                             # Зависимости
+├── README.md                                    # This file
+└── requirements.txt                             # Dependencies
 ```
 
-### Зависимости
+### Dependencies
 
 ```bash
 pip install chromadb sentence-transformers numpy requests torch transformers
@@ -118,90 +117,140 @@ pip install chromadb sentence-transformers numpy requests torch transformers
 
 ---
 
-## 🚀 Как запустить
+2. **Run all cells sequentially.**
 
-1. **Открыть в Google Colab:**
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VladAgapov1969/VMAR_multi_agent_demos/blob/main/magent_v4_Rag_Qwen_Qwen_RL_v1_pynb.ipynb)
+3. **Observe the output:**
+   - The system will generate code for multiple tasks.
+   - It will compute rewards and store experiences.
+   - You will see the improvement in code quality over time.
 
-2. **Выполнить все ячейки последовательно.**
+---
+## 📁 Files in Repository
 
-3. **Наблюдать за выводом:**
-   - Система будет генерировать код для нескольких задач.
-   - Будет вычислять награды и сохранять опыт.
-   - Вы увидите улучшение качества кода со временем.
+| File | Description |
+|------|-------------|
+| `README.md` | This documentation |
+| `requirements.txt` | Python dependencies |
+| `process_schema.2.png` | System architecture diagram |
 
 ---
 
-## 📁 Файлы в репозитории
+## 🔬 Key Scientific Contributions
 
-| Файл | Описание |
-|------|----------|
-| `magent_v4_Rag_Qwen_Qwen_RL_v1_pynb.ipynb` | Основной Jupyter-блокнот с полным пайплайном |
-| `README.md` | Эта документация |
+1. **Self-Correction via RL:** Demonstrated how RL can improve code generation quality without retraining the base model.
 
----
+2. **Multi-Agent Orchestration:** Combines planning, coding, and execution in a verifiable pipeline.
 
-## 🔬 Ключевые научные вклады
+3. **RAG Integration:** Provides context-aware code generation with security and style rules.
 
-1. **Самокоррекция через RL:** Продемонстрировано, как RL может улучшать качество генерации кода без переобучения базовой модели.
-
-2. **Мультиагентная оркестрация:** Объединение планирования, генерации кода и выполнения в верифицируемом пайплайне.
-
-3. **Интеграция RAG:** Контекстно-зависимая генерация кода с учётом правил безопасности и стиля.
-
-4. **Измеримое обучение:** Показано количественное улучшение метрик качества кода.
+4. **Measurable Learning:** Shows quantitative improvement in code quality metrics.
 
 ---
 
-## 📈 Сводка метрик производительности
+## 📈 Performance Metrics Summary
 
-| Метрика | До RL | После RL |
-|---------|-------|----------|
-| **Успешность** | 0% | 100% |
-| **Качество кода** | 0/4 | 3.5/4 |
-| **Документация** | 0% | 100% |
-| **Обработка ошибок** | 0% | 50% |
+| Metric | Before RL | After RL |
+|--------|-----------|----------|
+| **Success Rate** | 0% | 100% |
+| **Code Quality** | 0/4 | 3.5/4 |
+| **Documentation** | 0% | 100% |
+| **Error Handling** | 0% | 50% |
 
 ---
 
-## 👤 Контактная информация
+💰 Get Full Access to the Code
+This repository contains a demonstration of the architecture and a system description.
 
-**Владислав Агапов**
+The full code, step-by-step tutorial, and ready-to-run Jupyter notebook are available upon request.
 
-- **Образование:**
+What you get for $49 USD
+✅ Complete Jupyter Notebook with working multi-agent RAG+RL system code
+
+✅ Step-by-step tutorial in English explaining each component
+
+✅ Pre-configured prompts for Qwen and DeepSeek-R1 (runs locally)
+
+✅ Sample logs and launch instructions
+
+✅ Bonus: High-resolution architecture diagram
+
+How to get access
+Contact me on Telegram: @agapov_vl or LinkedIn: vladislav-agapov-937921385
+
+Pay $49 USD via:
+
+Bank transfer to MBANK (Kyrgyzstan) – I will provide the details upon contact
+
+Cryptocurrency (USDT / USDC) to Binance wallet – I will provide the wallet address
+
+Receive a link to the private repository with the complete code
+
+💡 This is a one-time payment. You pay once and get the code forever.
+
+🎯 Who This Is For
+Who it's for	Why
+AI Engineers	Ready-to-use architecture for your projects
+Startups	Fast start for multi-agent systems
+Researchers	Real-world RL+RAG demonstration
+Entrepreneurs	Battle-tested system for your business
+Who it's NOT for: those looking for a turnkey SaaS solution or who are not ready to understand the code.
+
+❓ FAQ
+1. What exactly do I get for $49?
+The complete code, tutorial, and launch instructions.
+
+2. Do I need any API keys?
+No. Everything runs locally via Ollama (Qwen and DeepSeek).
+
+3. Will I get support?
+Yes. If you run into issues — I'll help you.
+
+4. Can I use the code in commercial projects?
+Yes. You receive a license to use the code in your own projects.
+
+5. How do I pay?
+Contact me on Telegram or LinkedIn. I will provide MBANK transfer details or Binance wallet address.
+
+---
+
+## 👤 Contact Information
+
+**Vladislav Agapov**
+
+- **Education:**
   - PhD, Applied Mathematics, University of Alberta (2000)
-  - Ms. Degree, Московский Физико-Технический Институт (МФТИ) (1994)
+  - Ms. Degree, Moscow Institute of Physics and Technology (MIPT) (1994)
 
-- **Профили:**
+- **Profiles:**
   - GitHub: [VladAgapov1969](https://github.com/VladAgapov1969)
   - LinkedIn: [vladislav-agapov-937921385](https://www.linkedin.com/in/vladislav-agapov-937921385)
   - Telegram: [@agapov_vl](https://t.me/agapov_vl)
-  - Канал: [Digital Renaissance Global](https://t.me/DigitalRenaissanceGlobal)
+  - Channel: [Digital Renaissance Global](https://t.me/DigitalRenaissanceGlobal)
 
 ---
 
-## 📄 Лицензия
+## 📄 License
 
-MIT License – см. файл [LICENSE](LICENSE).
-
----
-
-## 🙏 Благодарности
-
-- **Центр когнитивного моделирования МФТИ** – за исследовательское сотрудничество и обратную связь
-- **Hugging Face** – за предоставление моделей Qwen и библиотеки Transformers
-- **Google Colab** – за предоставление бесплатных GPU-ресурсов
+MIT License – see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📝 Примечания
+## 🙏 Acknowledgments
 
-- Система разработана для **образовательных и исследовательских целей**.
-- Все модели работают **локально** в среде Colab.
-- RL-цикл в текущей версии использует **воспроизведение опыта** без полноценного обновления градиентов политики (работает как proof-of-concept).
-- Дальнейшие планы включают полное обучение PPO/GRPO, многокритериальные награды и интеграцию с внешними средами выполнения кода.
+- **MIPT Center for Cognitive Modeling** – for research collaboration and feedback
+- **Hugging Face** – for providing Qwen models and the Transformers library
+- **Google Colab** – for providing free GPU resources
 
 ---
 
-*Последнее обновление: Август 2026*
+## 📝 Notes
+
+- The system is designed for **educational and research purposes**.
+- All models run **locally** in the Colab environment.
+- The current RL loop uses **experience replay** without full policy gradient updates (works as a proof-of-concept).
+- Future plans include full PPO/GRPO training, multi-criteria rewards, and integration with external code execution environments.
+
+---
+
+*Last updated: August 2026*
 ```
