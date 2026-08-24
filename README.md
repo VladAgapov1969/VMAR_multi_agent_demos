@@ -13,20 +13,6 @@ The system generates Python code based on natural language tasks, evaluates code
 
 ---
 
-## 🧠 System Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                       VMAR + RAG + RL                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  Task → Planner → Coder → Executor → Reward → RL Buffer       │
-│    ↑        ↑         ↑          ↑         ↑                  │
-│    └────────┴─────────┴──────────┴─────────┘                  │
-│                    RAG Knowledge Base                          │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
 
 ### Components
 
